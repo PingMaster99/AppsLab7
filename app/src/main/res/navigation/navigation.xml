@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/navStart">
+
+    <fragment
+        android:id="@+id/navStart"
+        android:name="com.example.zvent.activities.Start"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_navStart_to_navRegister"
+            app:destination="@id/navRegister" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navRegister"
+        android:name="com.example.zvent.activities.RegisterGuest"
+        android:label="RegisterGuest"
+        tools:layout="@layout/fragment_register_guest">
+        <action
+            android:id="@+id/action_navRegister_to_results"
+            app:destination="@id/results"
+            app:popUpTo="@id/navStart"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/results"
+        android:name="com.example.zvent.activities.Results"
+        android:label="Results"
+        tools:layout="@layout/fragment_results">
+        <argument
+            android:name="guestList"
+            app:argType="string" />
+        <argument
+            android:name="registeredGuests"
+            app:argType="integer" />
+        <argument
+            android:name="invitedGuests"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_results_to_navRegister"
+            app:destination="@id/navRegister"
+            app:popUpTo="@id/navStart"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/about"
+        android:name="com.example.zvent.activities.About"
+        android:label="About"
+        tools:layout="@layout/fragment_about"/>
+</navigation>

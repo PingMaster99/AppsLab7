@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Zvent</string>
+    <string name="start">Iniciar</string>
+    <string name="about">Acerca de</string>
+    <string name="home">Inicio</string>
+    <string name="confirm">Check</string>
+    <string name="dont">Clear</string>
+    <string name="restart">Reiniciar</string>
+    <string name="viewGuests">Ver invitados</string>
+    <string name="invited">Invitados: </string>
+    <string name="registered">Registrados: </string>
+    <string name="register">Registro</string>
+    <string name="info">Somos una aplicacion dedicada a la administración de invitados
+    para todo evento privado. \n \n \nContacto: support@zvent.com</string>
+    <string name="share">Compartir</string>
+    <string name="successful_share">De %1$d invitados, %2$d fueron registrados.</string>
+    <string name="name">Zvent Organizing App</string>
+    <string name="zvent_email">support@zvent.com</string>
+</resources>
