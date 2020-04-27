@@ -36,6 +36,4 @@ class About : Fragment() {
 
         return binding.root
     }
-
-
 }
