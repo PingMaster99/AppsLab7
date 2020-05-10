@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navStart"
-        android:name="com.example.zvent.activities.Start"
+        android:name="com.example.zvent.start.Start"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/navRegister"
-        android:name="com.example.zvent.activities.RegisterGuest"
+        android:name="com.example.zvent.register.RegisterGuest"
         android:label="RegisterGuest"
         tools:layout="@layout/fragment_register_guest">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/results"
-        android:name="com.example.zvent.activities.Results"
+        android:name="com.example.zvent.results.Results"
         android:label="Results"
         tools:layout="@layout/fragment_results">
         <argument
@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/about"
-        android:name="com.example.zvent.activities.About"
+        android:name="com.example.zvent.about.About"
         android:label="About"
         tools:layout="@layout/fragment_about"/>
 </navigation>

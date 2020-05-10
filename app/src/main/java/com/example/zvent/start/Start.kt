@@ -1,4 +1,4 @@
-package com.example.zvent.activities
+package com.example.zvent.start
 
 import android.os.Bundle
 import android.view.*

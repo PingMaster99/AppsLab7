@@ -1,4 +1,4 @@
-package com.example.zvent.activities
+package com.example.zvent.about
 
 import android.os.Bundle
 import android.view.LayoutInflater

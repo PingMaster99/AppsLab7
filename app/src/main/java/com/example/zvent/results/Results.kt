@@ -1,4 +1,4 @@
-package com.example.zvent.activities
+package com.example.zvent.results
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,6 +12,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
 import com.example.zvent.R
+import com.example.zvent.results.ResultsArgs
+import com.example.zvent.results.ResultsDirections
 import com.example.zvent.databinding.FragmentResultsBinding
 
 /**
@@ -38,7 +40,8 @@ class Results : Fragment() {
             R.layout.fragment_results, container, false)
 
         // Arguments from the guest registration
-        val args = ResultsArgs.fromBundle(arguments!!)
+        val args =
+            ResultsArgs.fromBundle(arguments!!)
 
         // Navigates to guest registration if clicked
         binding.restart.setOnClickListener{
@@ -92,7 +95,8 @@ class Results : Fragment() {
      * @return Intent with elements
      */
     private fun getShareIntent() : Intent {
-        val args = ResultsArgs.fromBundle(arguments!!)  // Arguments from the guest registration
+        val args =
+            ResultsArgs.fromBundle(arguments!!)  // Arguments from the guest registration
         val shareIntent = Intent(Intent.ACTION_SEND)    // To be exported
 
         // Sets the content of export

@@ -1,6 +1,5 @@
-package com.example.zvent.activities
+package com.example.zvent.register
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
@@ -8,15 +7,11 @@ import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
 
 import com.example.zvent.R
+import com.example.zvent.register.RegisterGuestDirections
 import com.example.zvent.databinding.FragmentRegisterGuestBinding
 import com.example.zvent.models.Guest
-import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_register_guest.*
 
 /**
  * A simple [Fragment] subclass.
@@ -141,8 +136,13 @@ class RegisterGuest : Fragment() {
 
             }
             // Instances the Result fragment
-            view!!.findNavController().navigate(RegisterGuestDirections.
-                actionNavRegisterToResults(guestString, registered, guestList.size))
+            view!!.findNavController().navigate(
+                RegisterGuestDirections.actionNavRegisterToResults(
+                    guestString,
+                    registered,
+                    guestList.size
+                )
+            )
         }
     }
 }
