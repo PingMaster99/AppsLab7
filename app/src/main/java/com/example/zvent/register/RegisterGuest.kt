@@ -8,14 +8,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-
 import com.example.zvent.R
-import com.example.zvent.register.RegisterGuestDirections
 import com.example.zvent.databinding.FragmentRegisterGuestBinding
 import com.example.zvent.guests.GuestListViewModel
-import com.example.zvent.models.Guest
 
 /**
  * A simple [Fragment] subclass.

@@ -9,13 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-
 import com.example.zvent.R
-import com.example.zvent.results.ResultsArgs
-import com.example.zvent.results.ResultsDirections
 import com.example.zvent.databinding.FragmentResultsBinding
 
 /**

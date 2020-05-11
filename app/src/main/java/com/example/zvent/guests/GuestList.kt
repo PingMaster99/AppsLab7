@@ -5,18 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-
 import com.example.zvent.R
-import com.example.zvent.add_guest.AddGuestViewModel
 import com.example.zvent.databinding.FragmentGuestListBinding
-import com.example.zvent.models.Guest
-import kotlinx.android.synthetic.main.fragment_register_guest.*
 
 /**
  * A simple [Fragment] subclass.
