@@ -2,6 +2,7 @@ package com.example.zvent.start
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -10,6 +11,7 @@ import androidx.navigation.ui.NavigationUI
 
 import com.example.zvent.R
 import com.example.zvent.databinding.FragmentStartBinding
+import com.example.zvent.guests.GuestListViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -32,7 +34,18 @@ class Start : Fragment() {
 
         // Navigates to guest registration if clicked
         binding.startButton.setOnClickListener{ view: View ->
-            view.findNavController().navigate(R.id.action_navStart_to_navRegister)
+            if(GuestListViewModel.guestList.size > 0) {
+                view.findNavController().navigate(R.id.action_navStart_to_navRegister)
+            } else {
+                Toast.makeText(view!!.context,
+                    "¡Debe tener invitados antes de poder registrarlos!" +
+                            " Presione el boton 'INVITADOS' para ver su lista.",
+                    Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.guests.setOnClickListener{ view: View ->
+            view.findNavController().navigate(R.id.action_navStart_to_guestList)
         }
 
         // Options menu

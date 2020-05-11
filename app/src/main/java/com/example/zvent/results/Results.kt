@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
@@ -21,6 +23,7 @@ import com.example.zvent.databinding.FragmentResultsBinding
  */
 class Results : Fragment() {
 
+    private lateinit var viewModel: ResultsViewModel
     @SuppressLint("SetTextI18n")
     /**
      * Builds the fragment
@@ -38,6 +41,7 @@ class Results : Fragment() {
         // Data binding
         val binding = DataBindingUtil.inflate<FragmentResultsBinding>(inflater,
             R.layout.fragment_results, container, false)
+        viewModel = ViewModelProvider(this).get(ResultsViewModel::class.java)
 
         // Arguments from the guest registration
         val args =
@@ -48,14 +52,20 @@ class Results : Fragment() {
             view!!.findNavController().navigate(ResultsDirections.actionResultsToNavRegister())
         }
 
+        // Arguments are stored in the ViewModel
+        viewModel.guestString = args.guestList
+        viewModel.numberOfGuests = args.invitedGuests
+        viewModel.registered = args.registeredGuests
+
         // Shows the state of guests if clicked
         binding.viewGuests.setOnClickListener{
-            Toast.makeText(view!!.context, args.guestList, Toast.LENGTH_SHORT).show()
+            Toast.makeText(view!!.context, viewModel.guestString, Toast.LENGTH_SHORT).show()
         }
 
+
         // Updates the invited and registered guests on screen
-        binding.Invitedguests.text = "Invitados: " + args.invitedGuests
-        binding.registeredGuests.text = "Registrados: " + args.registeredGuests
+        binding.Invitedguests.text = "Invitados: " + viewModel.numberOfGuests
+        binding.registeredGuests.text = "Registrados: " + viewModel.registered
 
         // Share menu
         setHasOptionsMenu(true)
@@ -101,7 +111,7 @@ class Results : Fragment() {
 
         // Sets the content of export
         shareIntent.setType("text/plain").putExtra(Intent.EXTRA_TEXT,
-            getString(R.string.successful_share, args.invitedGuests, args.registeredGuests))
+            getString(R.string.successful_share, viewModel.numberOfGuests, viewModel.registered))
 
         return shareIntent
     }

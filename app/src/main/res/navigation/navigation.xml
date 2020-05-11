@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navStart_to_navRegister"
             app:destination="@id/navRegister" />
+        <action
+            android:id="@+id/action_navStart_to_guestList"
+            app:destination="@id/guestList" />
     </fragment>
 
     <fragment
@@ -51,4 +54,28 @@
         android:name="com.example.zvent.about.About"
         android:label="About"
         tools:layout="@layout/fragment_about"/>
+    <fragment
+        android:id="@+id/guestList"
+        android:name="com.example.zvent.guests.GuestList"
+        android:label="GuestList"
+        tools:layout="@layout/fragment_guest_list">
+        <action
+            android:id="@+id/action_guestList_to_addGuest"
+            app:destination="@id/addGuest" />
+        <argument
+            android:name="addedGuest"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/addGuest"
+        android:name="com.example.zvent.add_guest.AddGuest"
+        android:label="AddGuest"
+        tools:layout="@layout/fragment_add_guest">
+        <action
+            android:id="@+id/addGuest"
+            app:destination="@id/guestList" />
+        <argument
+            android:name="addedGuest"
+            app:argType="string" />
+    </fragment>
 </navigation>

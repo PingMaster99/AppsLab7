@@ -10,10 +10,18 @@
     <string name="invited">Invitados: </string>
     <string name="registered">Registrados: </string>
     <string name="register">Registro</string>
-    <string name="info">Somos una aplicacion dedicada a la administración de invitados
+    <string name="info">Somos una aplicación dedicada a la administración de invitados
     para todo evento privado. \n \n \nContacto: support@zvent.com</string>
     <string name="share">Compartir</string>
     <string name="successful_share">De %1$d invitados, %2$d fueron registrados.</string>
     <string name="name">Zvent Organizing App</string>
     <string name="zvent_email">support@zvent.com</string>
+    <string name="save">guardar</string>
+    <string name="guests">Invitados</string>
+    <string name="noGuests">¡No hay invitados registados! Presione + para añadirlos.</string>
+    <string name="noGuestsRegistered">¡No hay invitados registrados! Presione + para agregarlos</string>
+    <string name="guestName">Nombre</string>
+    <string name="guestPhone">Teléfono</string>
+    <string name="guestEmail">Correo electrónico</string>
+    <string name="addGuestList">Presione los atributos para agregar la información</string>
 </resources>
