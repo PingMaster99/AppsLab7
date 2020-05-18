@@ -11,6 +11,7 @@ import com.example.zvent.databinding.ActivityMainBinding
  * <h1>MainActivity</h1>
  *<p>
  * Main activity that runs all the fragments of Zvent guest register app
+ * Room Database implementation based on PollApp by Oscar Gil
  *</p>
  *
  * @author Pablo Ruiz (PingMaster99)

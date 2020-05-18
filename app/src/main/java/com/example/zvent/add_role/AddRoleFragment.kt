@@ -1,9 +1,12 @@
 package com.example.zvent.add_role
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.SeekBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
@@ -78,10 +81,24 @@ class AddRoleFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.guestList) {
-            viewModel.insertGuestType()
-            activity?.onBackPressed()
+
+            if(binding.description.text.isNotEmpty() && binding.progress.text.isNotEmpty()
+                && binding.guestText.text.isNotEmpty()) {
+                viewModel.insertGuestType()
+                requireView().hideKeyboard()
+                activity?.onBackPressed()
+            } else {
+                Toast.makeText(this.context, "Por favor no deje entradas vacías",
+                    Toast.LENGTH_SHORT).show()
+            }
         }
+        requireView().hideKeyboard()
         return super.onOptionsItemSelected(item)
     }
 
+    // Hides the keyboard
+    fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    }
 }
