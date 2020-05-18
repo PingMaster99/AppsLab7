@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.zvent.R
+import com.example.zvent.database.ZventDatabase
 import com.example.zvent.databinding.FragmentGuestListBinding
 
 /**
@@ -19,6 +20,7 @@ class GuestList : Fragment() {
 
     private lateinit var binding: FragmentGuestListBinding
     private lateinit var viewModel: GuestListViewModel
+    private lateinit var viewModelFactory: GuestListViewModelFactory
 
     /**
      * Builds the fragment
@@ -34,24 +36,30 @@ class GuestList : Fragment() {
         // Data binding and ViewModel
         binding = DataBindingUtil.inflate<FragmentGuestListBinding>(inflater,
             R.layout.fragment_guest_list, container, false)
-        viewModel = ViewModelProvider(this).get(GuestListViewModel::class.java)
 
         // Changes action bar title
         (activity as AppCompatActivity).supportActionBar?.title = "Lista de invitados"
 
         // Click listener toadd a guest (floating action button)
         binding.addGuest.setOnClickListener{view: View ->
-            view.findNavController().navigate(R.id.action_guestList_to_addGuest)
+            view.findNavController().navigate(GuestListDirections.actionGuestListToAddGuest())
         }
 
-        // Sets the list of guests according to the ViewModel
-        binding.currentGuests.text = viewModel.getString()
-        // If no guests have been registered, a message to register guests displays
-        if(binding.currentGuests.text == "") {
-            binding.currentGuests.text = getString(R.string.noGuestsRegistered)
-        }
 
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        binding.lifecycleOwner = this
+
+        val application = requireNotNull(this.activity).application
+        val dataSource = ZventDatabase.getInstance(application).guestDatabaseDao
+        viewModelFactory = GuestListViewModelFactory(dataSource)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(GuestListViewModel::class.java)
+
+        binding.viewModel = viewModel
     }
 }

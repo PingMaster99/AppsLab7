@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.zvent.results.ResultsViewModel" />
+    </data>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -75,6 +79,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Invitedguests"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/guestNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@{viewModel.guestCount.toString()}"
+                android:textAppearance="@style/subtitleStyle"
+                app:layout_constraintBaseline_toBaselineOf="@+id/Invitedguests"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/Invitedguests" />
+
+            <TextView
+                android:id="@+id/numberRegistered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@{viewModel.numberRegistered.toString()}"
+                android:textAppearance="@style/subtitleStyle"
+                app:layout_constraintBaseline_toBaselineOf="@+id/registeredGuests"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/registeredGuests" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>

@@ -3,6 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.zvent.add_guest.AddGuestViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,6 +28,7 @@
             android:inputType="textPersonName"
             android:textColor="@color/bodyText"
             android:textColorHint="@color/bodyText"
+            android:text="@={viewModel.guestInfo}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -38,6 +44,7 @@
             android:layout_marginTop="36dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
+            android:text="@={viewModel.guestPhone}"
             android:hint="@string/guestPhone"
             android:importantForAutofill="no"
             android:inputType="phone"
@@ -56,6 +63,7 @@
             android:layout_marginTop="36dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
+            android:text="@={viewModel.guestEmail}"
             android:hint="@string/guestEmail"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
@@ -79,5 +87,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/email"
             app:layout_constraintVertical_bias="0.422" />
+
+        <Spinner
+            android:id="@+id/role_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:drawable/btn_dropdown"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

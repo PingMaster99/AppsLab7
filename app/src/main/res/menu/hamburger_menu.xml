@@ -11,6 +11,10 @@
         android:icon="@drawable/person_icon"
         android:title="@string/guests" />
     <item
+        android:id="@+id/navRoles"
+        android:icon="@drawable/role_icon"
+        android:title="@string/roles" />
+    <item
         android:id="@+id/about"
         android:icon="@drawable/about"
         android:title="@string/about" />

@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    tools:context="com.example.zvent.roles.RolesFragment">
 
     <data>
         <variable
             name="viewModel"
-            type="com.example.zvent.guests.GuestListViewModel" />
+            type="com.example.zvent.roles.RolesViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".guests.GuestList"
         android:background="@color/colorPrimaryDark">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/addGuest"
+            android:id="@+id/addRole"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -31,7 +31,7 @@
             app:srcCompat="@drawable/add_icon" />
 
         <ScrollView
-            android:id="@+id/ScrollGuests"
+            android:id="@+id/ScrollRoles"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="32dp"
@@ -50,15 +50,13 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/currentGuests"
+                    android:id="@+id/currentRoles"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@{viewModel.guestsText}"
+                    android:text="@{viewModel.typesText}"
                     android:textAlignment="center"
                     android:textAppearance="@style/subtitleStyle" />
             </LinearLayout>
         </ScrollView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

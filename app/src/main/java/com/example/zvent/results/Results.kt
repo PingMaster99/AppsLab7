@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.zvent.R
+import com.example.zvent.database.ZventDatabase
 import com.example.zvent.databinding.FragmentResultsBinding
+import com.example.zvent.register.RegisterGuestViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -19,6 +22,9 @@ import com.example.zvent.databinding.FragmentResultsBinding
 class Results : Fragment() {
 
     private lateinit var viewModel: ResultsViewModel
+    private lateinit var binding: FragmentResultsBinding
+    private lateinit var viewModelFactory: ResultsViewModelFactory
+
     @SuppressLint("SetTextI18n")
     /**
      * Builds the fragment
@@ -34,38 +40,45 @@ class Results : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = "Resultado"
 
         // Data binding
-        val binding = DataBindingUtil.inflate<FragmentResultsBinding>(inflater,
+        binding = DataBindingUtil.inflate<FragmentResultsBinding>(inflater,
             R.layout.fragment_results, container, false)
-        viewModel = ViewModelProvider(this).get(ResultsViewModel::class.java)
 
-        // Arguments from the guest registration
-        val args =
-            ResultsArgs.fromBundle(arguments!!)
 
         // Navigates to guest registration if clicked
         binding.restart.setOnClickListener{
-            view!!.findNavController().navigate(ResultsDirections.actionResultsToNavRegister())
+            requireView().findNavController().navigate(ResultsDirections.actionResultsToNavRegister())
         }
 
-        // Arguments are stored in the ViewModel
-        viewModel.guestString = args.guestList
-        viewModel.numberOfGuests = args.invitedGuests
-        viewModel.registered = args.registeredGuests
 
         // Shows the state of guests if clicked
         binding.viewGuests.setOnClickListener{
-            Toast.makeText(view!!.context, viewModel.guestString, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this.context, RegisterGuestViewModel.guestResults, Toast.LENGTH_SHORT).show()
         }
-
-
-        // Updates the invited and registered guests on screen
-        binding.Invitedguests.text = "Invitados: " + viewModel.numberOfGuests
-        binding.registeredGuests.text = "Registrados: " + viewModel.registered
 
         // Share menu
         setHasOptionsMenu(true)
 
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        binding.lifecycleOwner = this
+
+        val application = requireNotNull(this.activity).application
+        val dataSource = ZventDatabase.getInstance(application).guestDatabaseDao
+        viewModelFactory = ResultsViewModelFactory(dataSource)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ResultsViewModel::class.java)
+
+        binding.viewModel = viewModel
+
+        viewModel.restartRegister.observe(viewLifecycleOwner, Observer { isRestarted ->
+            if (isRestarted) {
+                requireView().findNavController().navigate(ResultsDirections.actionResultsToNavRegister())
+                viewModel.restartComplete()
+            }
+        })
     }
 
     /**
@@ -78,7 +91,7 @@ class Results : Fragment() {
         inflater.inflate(R.menu.share, menu)
 
         // If the intent doesn't resolve, it makes the share button invisible
-        if(null == getShareIntent().resolveActivity(activity!!.packageManager)) {
+        if(null == getShareIntent().resolveActivity(requireActivity().packageManager)) {
             menu.findItem(R.id.share)?.setVisible(false)
         }
     }
@@ -100,13 +113,12 @@ class Results : Fragment() {
      * @return Intent with elements
      */
     private fun getShareIntent() : Intent {
-        val args =
-            ResultsArgs.fromBundle(arguments!!)  // Arguments from the guest registration
+
         val shareIntent = Intent(Intent.ACTION_SEND)    // To be exported
 
         // Sets the content of export
         shareIntent.setType("text/plain").putExtra(Intent.EXTRA_TEXT,
-            getString(R.string.successful_share, viewModel.numberOfGuests, viewModel.registered))
+            viewModel.resultsText.value)
 
         return shareIntent
     }

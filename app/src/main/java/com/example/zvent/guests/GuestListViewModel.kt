@@ -1,7 +1,10 @@
 package com.example.zvent.guests
 
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.zvent.models.Guest
+import com.example.zvent.database.GuestDatabaseDao
+import com.example.zvent.database.GuestWithType
+
 /**
  * <h1>GuestListViewModel</h1>
  *<p>
@@ -13,41 +16,25 @@ import com.example.zvent.models.Guest
  * @version 1.0
  * @since 2020-05-10
  **/
-class GuestListViewModel: ViewModel() {
+class GuestListViewModel(val database: GuestDatabaseDao): ViewModel() {
     // Companion object stores the main guest list and string format
-    companion object {
-        var guestList: MutableList<Guest> = mutableListOf(
-        )
-        var guestsInString = ""
+
+    private val guests = database.getGuestWithType()
+
+    val guestsText = Transformations.map(guests) {
+        buildGuestsText(it)
     }
 
-    /**
-     * Returns the list that contains the guests
-     * @return guestList with the guests
-     */
-    fun getList(): MutableList<Guest> {
-        return guestList
-    }
-
-    /**
-     * Adds a guest to the list
-     * @param guest to be added
-     */
-    fun addGuest(guest: Guest) {
-        // Updates the guest number according to the size of the list
-        var guestNumber = guestList.size + 1
-        // Added guest in string format
-        var addedGuest = "Invitado " + guestNumber + "\nNombre: " + guest.name +
-                "\nTeléfono: " + guest.phone + "\nCorreo: " + guest.email + "\n\n"
-        guestsInString += addedGuest    // Adds it to the string
-        guestList.add(guest)            // Adds it to the list
-    }
-
-    /**
-     * Gets the string format of the guests
-     * @return guestsInString
-     */
-    fun getString(): String {
-        return guestsInString
+    private fun buildGuestsText(guestsWithType: List<GuestWithType>) : String {
+        val guestsText = StringBuilder()
+        for(guest in guestsWithType) {
+            guestsText.append("Guest: ${guest.guest.guestId}\n" +
+                    "Nombre: ${guest.guest.text} \n " +
+                    "Telefono: ${guest.guest.phone} \n" +
+                    "Email: ${guest.guest.email} \n" +
+                    "Rol: ${guest.type}\n \n"
+            )
+        }
+        return guestsText.toString()
     }
 }

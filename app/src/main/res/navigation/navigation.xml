@@ -34,15 +34,6 @@
         android:name="com.example.zvent.results.Results"
         android:label="Results"
         tools:layout="@layout/fragment_results">
-        <argument
-            android:name="guestList"
-            app:argType="string" />
-        <argument
-            android:name="registeredGuests"
-            app:argType="integer" />
-        <argument
-            android:name="invitedGuests"
-            app:argType="integer" />
         <action
             android:id="@+id/action_results_to_navRegister"
             app:destination="@id/navRegister"
@@ -62,9 +53,6 @@
         <action
             android:id="@+id/action_guestList_to_addGuest"
             app:destination="@id/addGuest" />
-        <argument
-            android:name="addedGuest"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addGuest"
@@ -74,8 +62,23 @@
         <action
             android:id="@+id/addGuest"
             app:destination="@id/guestList" />
-        <argument
-            android:name="addedGuest"
-            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/navRoles"
+        android:name="com.example.zvent.roles.RolesFragment"
+        android:label="fragment_roles"
+        tools:layout="@layout/fragment_roles" >
+        <action
+            android:id="@+id/action_navRoles_to_addRoleFragment"
+            app:destination="@id/addRoleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRoleFragment"
+        android:name="com.example.zvent.add_role.AddRoleFragment"
+        android:label="fragment_add_role"
+        tools:layout="@layout/fragment_add_role" >
+        <action
+            android:id="@+id/action_addRoleFragment_to_navRoles"
+            app:destination="@id/navRoles" />
     </fragment>
 </navigation>
