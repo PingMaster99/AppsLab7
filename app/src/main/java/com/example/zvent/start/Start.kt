@@ -14,6 +14,7 @@ import androidx.navigation.ui.NavigationUI
 import com.example.zvent.R
 import com.example.zvent.database.ZventDatabase
 import com.example.zvent.databinding.FragmentStartBinding
+import kotlinx.android.synthetic.main.fragment_results.*
 
 /**
  * A simple [Fragment] subclass.
@@ -62,7 +63,7 @@ class Start : Fragment() {
                 requireView().findNavController().navigate(StartDirections.actionNavStartToNavRegister())
                 viewModel.startComplete()
             } else {
-                Toast.makeText(this.context, "Por favor asigne invitados antes de registrarlos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, "Recuerde asignar invitados y roles antes de registrarlos", Toast.LENGTH_SHORT).show()
             }
         })
 

@@ -118,7 +118,7 @@ class Results : Fragment() {
 
         // Sets the content of export
         shareIntent.setType("text/plain").putExtra(Intent.EXTRA_TEXT,
-            viewModel.resultsText.value)
+            RegisterGuestViewModel.guestResults)
 
         return shareIntent
     }
