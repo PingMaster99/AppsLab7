@@ -4,8 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.zvent.database.GuestDatabaseDao
-import com.example.zvent.database.ZventDatabase
 
+/**
+ * <h1>StartViewModel</h1>
+ *<p>
+ * ViewModel used in the Start fragment
+ *</p>
+ *
+ * @author Pablo Ruiz (PingMaster99)
+ * @version 1.0
+ * @since 2020-05-17
+ **/
 class StartViewModel(val database: GuestDatabaseDao) : ViewModel() {
 
     val guestCount = database.getGuestCount()

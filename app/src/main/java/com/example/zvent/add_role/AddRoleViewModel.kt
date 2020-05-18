@@ -6,6 +6,16 @@ import com.example.zvent.database.GuestType
 import com.example.zvent.database.GuestTypeDatabaseDao
 import kotlinx.coroutines.*
 
+/**
+ * <h1>AddRoleViewModel</h1>
+ *<p>
+ * ViewModel used for AddRoleFragment
+ *</p>
+ *
+ * @author Pablo Ruiz (PingMaster99)
+ * @version 1.0
+ * @since 2020-05-17
+ **/
 class AddRoleViewModel(val database: GuestTypeDatabaseDao) : ViewModel() {
     val type = MutableLiveData<String>()
     val description = MutableLiveData<String>()

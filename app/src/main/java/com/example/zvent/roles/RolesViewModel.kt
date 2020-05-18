@@ -2,12 +2,20 @@ package com.example.zvent.roles
 
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.zvent.database.GuestDatabaseDao
 import com.example.zvent.database.GuestType
 import com.example.zvent.database.GuestTypeDatabaseDao
-import com.example.zvent.database.ZventDatabase
 import java.lang.StringBuilder
 
+/**
+ * <h1>RolesViewModel</h1>
+ *<p>
+ * ViewModel used in RolesFragment
+ *</p>
+ *
+ * @author Pablo Ruiz (PingMaster99)
+ * @version 1.0
+ * @since 2020-05-17
+ **/
 class RolesViewModel(val database: GuestTypeDatabaseDao) : ViewModel() {
 
     private val types = database.getGuestTypes()
