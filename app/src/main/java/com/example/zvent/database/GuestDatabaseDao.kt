@@ -24,6 +24,6 @@ interface GuestDatabaseDao {
     @Query("SELECT COUNT(*) FROM guest_table")
     fun getGuestCount(): LiveData<Int>
 
-    @Query("SELECT q.*, t.type FROM guest_table q LEFT JOIN guest_type_table t ON q.type_id = t.id")
+    @Query("SELECT q.*, t.type FROM guest_table q LEFT JOIN guest_type_table t ON q.type_id = t.id ORDER BY t.weight")
     fun getGuestWithType(): LiveData<List<GuestWithType>>
 }
