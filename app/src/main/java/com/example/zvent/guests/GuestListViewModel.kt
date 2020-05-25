@@ -1,5 +1,7 @@
 package com.example.zvent.guests
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.zvent.database.GuestDatabaseDao
@@ -36,5 +38,17 @@ class GuestListViewModel(val database: GuestDatabaseDao): ViewModel() {
             )
         }
         return guestsText.toString()
+    }
+
+    private val _guestClicked = MutableLiveData<Long>()
+    val guestClicked: LiveData<Long>
+        get() = _guestClicked
+
+    fun onGuestClicked(typeId: Long) {
+        _guestClicked.value = typeId
+    }
+
+    fun onGuestClickedCompleted(){
+        _guestClicked.value = null
     }
 }

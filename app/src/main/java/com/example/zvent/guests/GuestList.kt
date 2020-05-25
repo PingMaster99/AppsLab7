@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.zvent.R
@@ -61,5 +62,17 @@ class GuestList : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory).get(GuestListViewModel::class.java)
 
         binding.viewModel = viewModel
+
+        viewModel.guestClicked.observe(viewLifecycleOwner, Observer {
+            if(it != null) {
+                requireView().findNavController().navigate(GuestListDirections.actionGuestListToGuestViewFragment(it))
+                viewModel.onGuestClickedCompleted()
+            }
+        })
+
+        val adapter = GuestAdapter(GuestClickListener {
+            viewModel.onGuestClicked(it)
+        })
+
     }
 }

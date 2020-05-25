@@ -15,7 +15,8 @@ data class GuestType(
     @NonNull
     val type: String,
     val description: String,
-    val weight: String
+    val weight: String,
+    val iconIndex: Int
 ) {
     override fun toString(): String {
         return type

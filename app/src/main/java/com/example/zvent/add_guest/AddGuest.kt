@@ -16,10 +16,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.zvent.R
+import com.example.zvent.database.Guest
 import com.example.zvent.database.GuestType
 import com.example.zvent.database.ZventDatabase
 import com.example.zvent.databinding.FragmentAddGuestBinding
 import com.example.zvent.guests.GuestListViewModel
+import kotlinx.android.synthetic.main.fragment_register_guest.*
 
 /**
  * A simple [Fragment] subclass.

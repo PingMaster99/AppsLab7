@@ -1,5 +1,7 @@
 package com.example.zvent.roles
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.zvent.database.GuestType
@@ -18,7 +20,7 @@ import java.lang.StringBuilder
  **/
 class RolesViewModel(val database: GuestTypeDatabaseDao) : ViewModel() {
 
-    private val types = database.getGuestTypes()
+    val types = database.getGuestTypes()
 
     val typesText = Transformations.map(types) {
         buildGuestText(it)
@@ -31,5 +33,16 @@ class RolesViewModel(val database: GuestTypeDatabaseDao) : ViewModel() {
                     "Descripcion: ${type.description}\n ${type.weight}\n\n")
         }
         return typesText.toString()
+    }
+    private val _guestTypeClicked = MutableLiveData<Long>()
+    val guestTypeClicked: LiveData<Long>
+        get() = _guestTypeClicked
+
+    fun onGuestTypeClicked(typeId: Long) {
+        _guestTypeClicked.value = typeId
+    }
+
+    fun onGuestTypeClickedCompleted(){
+        _guestTypeClicked.value = null
     }
 }

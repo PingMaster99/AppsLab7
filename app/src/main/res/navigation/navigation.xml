@@ -53,6 +53,9 @@
         <action
             android:id="@+id/action_guestList_to_addGuest"
             app:destination="@id/addGuest" />
+        <action
+            android:id="@+id/action_guestList_to_guestViewFragment"
+            app:destination="@id/guestViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/addGuest"
@@ -71,6 +74,9 @@
         <action
             android:id="@+id/action_navRoles_to_addRoleFragment"
             app:destination="@id/addRoleFragment" />
+        <action
+            android:id="@+id/action_navRoles_to_rolesViewFragment"
+            app:destination="@id/rolesViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/addRoleFragment"
@@ -80,5 +86,23 @@
         <action
             android:id="@+id/action_addRoleFragment_to_navRoles"
             app:destination="@id/navRoles" />
+    </fragment>
+    <fragment
+        android:id="@+id/rolesViewFragment"
+        android:name="com.example.zvent.roles_view.RolesViewFragment"
+        android:label="fragment_roles_view"
+        tools:layout="@layout/fragment_roles_view" >
+        <argument
+            android:name="typeId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/guestViewFragment"
+        android:name="com.example.zvent.guest_view.GuestViewFragment"
+        android:label="fragment_guest_view"
+        tools:layout="@layout/fragment_guest_view" >
+        <argument
+            android:name="typeId"
+            app:argType="long" />
     </fragment>
 </navigation>

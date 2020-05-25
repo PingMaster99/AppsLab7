@@ -1,10 +1,7 @@
 package com.example.zvent.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface GuestDatabaseDao {
@@ -14,6 +11,9 @@ interface GuestDatabaseDao {
 
     @Update
     fun update(guest: Guest)
+
+    @Delete
+    fun delete(guest: Guest)
 
     @Query("SELECT * FROM guest_table WHERE id = :key")
     fun getGuest(key: Long): Guest?
@@ -26,4 +26,7 @@ interface GuestDatabaseDao {
 
     @Query("SELECT q.*, t.type FROM guest_table q LEFT JOIN guest_type_table t ON q.type_id = t.id ORDER BY t.weight")
     fun getGuestWithType(): LiveData<List<GuestWithType>>
+
+    @Query("SELECT q.*, t.type FROM guest_table q LEFT JOIN guest_type_table t ON q.type_id = t.id WHERE t.id = :key")
+    fun getGuestWithType(key: Long): Guest?
 }

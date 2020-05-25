@@ -25,7 +25,7 @@ class AddGuestViewModel(val database: GuestDatabaseDao,
     val guestInfo = MutableLiveData<String>()
     val guestEmail = MutableLiveData<String>()
     val guestPhone = MutableLiveData<String>()
-
+    val iconIndex = MutableLiveData<Int>()
     val typesList = databaseType.getGuestTypes()
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)

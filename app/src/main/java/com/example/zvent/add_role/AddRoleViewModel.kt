@@ -23,8 +23,10 @@ class AddRoleViewModel(val database: GuestTypeDatabaseDao) : ViewModel() {
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    val iconIndex = MutableLiveData<Int>()
 
-    fun insertGuestType() {
+    fun insertGuestType(index: Int) {
+        iconIndex.value = index
         uiScope.launch {
             insert()
         }
@@ -33,7 +35,8 @@ class AddRoleViewModel(val database: GuestTypeDatabaseDao) : ViewModel() {
     private suspend fun insert() {
         withContext(Dispatchers.IO) {
             database.insert(GuestType(type = type.value ?: "",
-                description = description.value ?: "", weight = weight.value ?: ""))
+                description = description.value ?: "", weight = weight.value ?: "",
+                iconIndex = iconIndex.value ?: 0))
         }
     }
 

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 
@@ -51,8 +52,23 @@ class RolesFragment : Fragment() {
 
         binding.viewModel = viewModel
 
+        viewModel.guestTypeClicked.observe(viewLifecycleOwner, Observer {
+            if(it != null) {
+                requireView().findNavController().navigate(RolesFragmentDirections.actionNavRolesToRolesViewFragment(it))
+                viewModel.onGuestTypeClickedCompleted()
+            }
+        })
+
+        val adapter = GuestTypeAdapter(GuestTypeClickListener {
+            viewModel.onGuestTypeClicked(it)
+        })
+
+        binding.rolesList.adapter = adapter
+
+        viewModel.types.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
     }
-
-
-
 }

@@ -84,7 +84,7 @@ class AddRoleFragment : Fragment() {
 
             if(binding.description.text.isNotEmpty() && binding.progress.text.isNotEmpty()
                 && binding.guestText.text.isNotEmpty()) {
-                viewModel.insertGuestType()
+                viewModel.insertGuestType(binding.iconId.text.toString().toInt())
                 requireView().hideKeyboard()
                 activity?.onBackPressed()
             } else {
