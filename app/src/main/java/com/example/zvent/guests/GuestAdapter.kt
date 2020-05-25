@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.zvent.database.Guest
+import com.example.zvent.database.GuestWithType
 import com.example.zvent.databinding.GuestLayoutBinding
 
 class GuestAdapter (val listener : GuestClickListener) : ListAdapter<Guest, GuestAdapter.ViewHolder>(QuestionTypeDiffCallback()) {

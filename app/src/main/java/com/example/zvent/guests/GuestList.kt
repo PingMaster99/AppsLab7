@@ -74,5 +74,13 @@ class GuestList : Fragment() {
             viewModel.onGuestClicked(it)
         })
 
+        binding.guestList.adapter = adapter
+
+        viewModel.guestList.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
+
     }
 }

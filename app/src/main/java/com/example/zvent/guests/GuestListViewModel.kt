@@ -21,8 +21,8 @@ import com.example.zvent.database.GuestWithType
 class GuestListViewModel(val database: GuestDatabaseDao): ViewModel() {
     // Companion object stores the main guest list and string format
 
-    private val guests = database.getGuestWithType()
-
+    val guests = database.getGuestWithType()
+    val guestList = database.getGuests()
     val guestsText = Transformations.map(guests) {
         buildGuestsText(it)
     }

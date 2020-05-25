@@ -16,7 +16,7 @@ interface GuestDatabaseDao {
     fun delete(guest: Guest)
 
     @Query("SELECT * FROM guest_table WHERE id = :key")
-    fun getGuest(key: Long): Guest?
+    fun getGuest(key: Long): LiveData<Guest>
 
     @Query("SELECT * FROM guest_table")
     fun getGuests(): LiveData<List<Guest>>
@@ -27,6 +27,6 @@ interface GuestDatabaseDao {
     @Query("SELECT q.*, t.type FROM guest_table q LEFT JOIN guest_type_table t ON q.type_id = t.id ORDER BY t.weight")
     fun getGuestWithType(): LiveData<List<GuestWithType>>
 
-    @Query("SELECT q.*, t.type FROM guest_table q LEFT JOIN guest_type_table t ON q.type_id = t.id WHERE t.id = :key")
-    fun getGuestWithType(key: Long): Guest?
+    @Query("SELECT q.*, t.type FROM guest_table q LEFT JOIN guest_type_table t ON q.type_id = t.id WHERE q.id = :key")
+    fun getCurrentGuestWithType(key: Long): LiveData<GuestWithType>
 }

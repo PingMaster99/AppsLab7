@@ -10,10 +10,10 @@ fun ImageView.setTypeImage(index: Int?) {
     Log.i("Binding", index.toString())
     index?.let {
         setImageResource(when (index) {
-            1 -> R.drawable.save_icon
-            2 -> R.drawable.white_trashcan
-            3 -> R.drawable.houseicon
-            else -> R.drawable.person_icon
+            1 -> R.drawable.bike_rider
+            2 -> R.drawable.person_icon
+            3 -> R.drawable.save_icon
+            else -> R.drawable.role_icon
         })
     }
 }
