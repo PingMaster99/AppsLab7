@@ -2,6 +2,7 @@ package com.example.zvent.guest_view
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -33,6 +34,7 @@ class GuestViewFragment : Fragment() {
         )
 
         setHasOptionsMenu(true)
+        (activity as AppCompatActivity).supportActionBar?.title = "Detalles de invitado"
 
         return binding.root
     }

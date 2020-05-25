@@ -2,6 +2,7 @@ package com.example.zvent.roles_view
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -32,7 +33,7 @@ class RolesViewFragment : Fragment() {
             container,
             false
         )
-
+        (activity as AppCompatActivity).supportActionBar?.title = "Rol"
         setHasOptionsMenu(true)
 
         return binding.root
