@@ -16,9 +16,9 @@ import com.example.zvent.databinding.FragmentGuestViewBinding
  * A simple [Fragment] subclass.
  */
 class GuestViewFragment : Fragment() {
+
     private lateinit var viewModelFactory: GuestViewViewModelFactory
     private lateinit var viewModel: GuestViewViewModel
-
     private lateinit var binding: FragmentGuestViewBinding
 
     override fun onCreateView(
@@ -34,6 +34,7 @@ class GuestViewFragment : Fragment() {
         )
 
         setHasOptionsMenu(true)
+        // Title is updates
         (activity as AppCompatActivity).supportActionBar?.title = "Detalles de invitado"
 
         return binding.root
@@ -47,6 +48,7 @@ class GuestViewFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = ZventDatabase.getInstance(application).guestDatabaseDao
 
+        // Navigation arguments (Guest ID)
         val guestViewFragmentArgs by navArgs<GuestViewFragmentArgs>()
 
         viewModelFactory = GuestViewViewModelFactory(dataSource, guestViewFragmentArgs.typeId)

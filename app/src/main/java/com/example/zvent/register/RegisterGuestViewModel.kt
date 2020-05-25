@@ -62,6 +62,7 @@ class RegisterGuestViewModel(val database: GuestDatabaseDao): ViewModel() {
         guestResults += currentGuest.value!!.guest.text + ": si  "
         registeredGuests ++
         val guestWithType = currentGuest.value
+        // Guest is registered
         uiScope.launch {
             update(guestWithType?.let {
                 Guest(guestId = it.guest.guestId,
@@ -83,17 +84,6 @@ class RegisterGuestViewModel(val database: GuestDatabaseDao): ViewModel() {
             currentGuest.value = guests.value?.get(guestNumber - 1)
         } else {
             _registerComplete.value = true
-        }
-        uiScope.launch {
-            update(guestWithType?.let {
-                Guest(guestId = it.guest.guestId,
-                    text = it.guest.text,
-                    order = it.guest.order,
-                    type_id = it.guest.type_id,
-                    email = it.guest.email,
-                    phone = it.guest.phone,
-                    registered = it.guest.registered)
-            })
         }
     }
 
@@ -120,17 +110,6 @@ class RegisterGuestViewModel(val database: GuestDatabaseDao): ViewModel() {
             currentGuest.value = guests.value?.get(guestNumber - 1)
         } else {
             _registerComplete.value = true
-        }
-        uiScope.launch {
-            update(guestWithType?.let {
-                Guest(guestId = it.guest.guestId,
-                    text = it.guest.text,
-                    order = it.guest.order,
-                    type_id = it.guest.type_id,
-                    email = it.guest.email,
-                    phone = it.guest.phone,
-                    registered = it.guest.registered)
-            })
         }
     }
 

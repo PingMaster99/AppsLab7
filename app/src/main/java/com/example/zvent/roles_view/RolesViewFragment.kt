@@ -47,6 +47,7 @@ class RolesViewFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = ZventDatabase.getInstance(application).guestTypeDatabaseDao
 
+        // Navigation arguments
         val RolesViewFragmentArgs by navArgs<RolesViewFragmentArgs>()
 
         viewModelFactory = RolesViewViewModelFactory(dataSource, RolesViewFragmentArgs.typeId)
